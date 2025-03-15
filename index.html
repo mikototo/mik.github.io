@@ -5,34 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mikato</title>
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-<div class="container">
-    <h1>Mikato</h1>
 
-    <div class="neon" style="top: 10%; left: 15%; animation-duration: 5s;"></div>
-    <div class="neon" style="top: 60%; left: 75%; animation-duration: 8s;"></div>
-    <div class="neon" style="top: 30%; left: 50%; animation-duration: 7s;"></div>
+<h1 class="title">Mikato</h1>
 
-    <div class="portfolio" id="portfolio">
-        <div class="project">
-            <img src="https://via.placeholder.com/300x200.png?text=Project+1" alt="Project 1">
-            <h3>Project One</h3>
-        </div>
-        <div class="project">
-            <img src="https://via.placeholder.com/300x200.png?text=Project+2" alt="Project 2">
-            <h3>Project Two</h3>
-        </div>
-        <div class="project">
-            <img src="https://via.placeholder.com/300x200.png?text=Project+3" alt="Project 3">
-            <h3>Project Three</h3>
-        </div>
+<canvas id="background"></canvas>
+
+<div class="portfolio" id="portfolio">
+    <div class="project">
+        <img src="https://via.placeholder.com/300x200.png?text=Project+1" alt="Project 1">
+        <h3>Project One</h3>
     </div>
-
-    <button class="upload-btn" onclick="uploadProject()">Upload New Project</button>
+    <div class="project">
+        <img src="https://via.placeholder.com/300x200.png?text=Project+2" alt="Project 2">
+        <h3>Project Two</h3>
+    </div>
+    <div class="project">
+        <img src="https://via.placeholder.com/300x200.png?text=Project+3" alt="Project 3">
+        <h3>Project Three</h3>
+    </div>
 </div>
 
+<button class="upload-btn" onclick="uploadProject()">Upload New Project</button>
+
 <script src="scripts.js"></script>
+
 </body>
 </html>
