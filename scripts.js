@@ -1,20 +1,95 @@
+const canvas = document.getElementById('background');
+const ctx = canvas.getContext('2d');
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+const shapes = [];
+const colors = ['#FF00FF', '#00FFFF', '#FFD700'];
+
+function random(min, max) {
+    return Math.random() * (max - min) + min;
+}
+
+class Shape {
+    constructor() {
+        this.x = random(0, canvas.width);
+        this.y = random(0, canvas.height);
+        this.size = random(10, 60);
+        this.color = colors[Math.floor(random(0, colors.length))];
+        this.speedX = random(-0.5, 0.5);
+        this.speedY = random(-0.5, 0.5);
+        this.type = Math.floor(random(0, 3)); // 0:circle, 1:square, 2:triangle
+    }
+
+    draw() {
+        ctx.fillStyle = this.color;
+        ctx.beginPath();
+        switch (this.type) {
+            case 0:
+                ctx.arc(this.x, this.y, this.size / 2, 0, Math.PI * 2);
+                ctx.fill();
+                break;
+            case 1:
+                ctx.fillRect(this.x, this.y, this.size, this.size);
+                break;
+            case 2:
+                ctx.moveTo(this.x, this.y - this.size / 2);
+                ctx.lineTo(this.x - this.size / 2, this.y + this.size / 2);
+                ctx.lineTo(this.x + this.size / 2, this.y + this.size / 2);
+                ctx.closePath();
+                ctx.fill();
+                break;
+        }
+    }
+
+    update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+
+        if (this.x > canvas.width || this.x < 0) this.speedX *= -1;
+        if (this.y > canvas.height || this.y < 0) this.speedY *= -1;
+    }
+}
+
+function initShapes(count) {
+    for (let i = 0; i < count; i++) {
+        shapes.push(new Shape());
+    }
+}
+
+function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    shapes.forEach(shape => {
+        shape.update();
+        shape.draw();
+    });
+    requestAnimationFrame(animate);
+}
+
+window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+});
+
+initShapes(40);
+animate();
+
+// Project Upload Function
 function uploadProject() {
     const portfolio = document.getElementById('portfolio');
 
-    const projectName = prompt("Enter your project's name:");
-    const projectImageURL = prompt("Enter the image URL for your project:");
+    const name = prompt('Enter project name:');
+    const imageURL = prompt('Enter project image URL:');
 
-    if (projectName && projectImageURL) {
-        const newProject = document.createElement('div');
-        newProject.classList.add('project');
-
-        newProject.innerHTML = `
-            <img src="${projectImageURL}" alt="${projectName}">
-            <h3>${projectName}</h3>
+    if (name && imageURL) {
+        const projectDiv = document.createElement('div');
+        projectDiv.classList.add('project');
+        projectDiv.innerHTML = `
+            <img src="${imageURL}" alt="${name}">
+            <h3>${name}</h3>
         `;
-
-        portfolio.appendChild(newProject);
+        portfolio.appendChild(projectDiv);
     } else {
-        alert("Project name and image URL are required.");
+        alert('Both name and image URL are required.');
     }
 }
