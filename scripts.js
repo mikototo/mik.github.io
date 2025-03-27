@@ -76,22 +76,15 @@ window.addEventListener('resize', () => {
 initShapes(25);
 animate();
 
-// Project Upload Function
-function uploadProject() {
-    const portfolio = document.getElementById('portfolio');
+// Dynamic Project Loading
+function loadProject(title, content) {
+    document.getElementById('portfolio').style.display = 'none';
+    document.getElementById('project-detail').style.display = 'block';
+    document.getElementById('detail-title').innerText = title;
+    document.getElementById('detail-content').innerText = content;
+}
 
-    const name = prompt('Enter project name:');
-    const imageURL = prompt('Enter project image URL:');
-
-    if (name && imageURL) {
-        const projectDiv = document.createElement('div');
-        projectDiv.classList.add('project');
-        projectDiv.innerHTML = `
-            <img src="${imageURL}" alt="${name}">
-            <h3>${name}</h3>
-        `;
-        portfolio.appendChild(projectDiv);
-    } else {
-        alert('Both name and image URL are required.');
-    }
+function backToPortfolio() {
+    document.getElementById('project-detail').style.display = 'none';
+    document.getElementById('portfolio').style.display = 'grid';
 }

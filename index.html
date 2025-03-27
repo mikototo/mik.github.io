@@ -8,26 +8,32 @@
 </head>
 <body>
 
-<h1 class="title">Mikato</h1>
-
 <canvas id="background"></canvas>
 
-<div class="portfolio" id="portfolio">
-    <div class="project">
-        <img src="https://via.placeholder.com/300x200.png?text=Project+1" alt="Project 1">
-        <h3>Project One</h3>
-    </div>
-    <div class="project">
-        <img src="https://via.placeholder.com/300x200.png?text=Project+2" alt="Project 2">
-        <h3>Project Two</h3>
-    </div>
-    <div class="project">
-        <img src="https://via.placeholder.com/300x200.png?text=Project+3" alt="Project 3">
-        <h3>Project Three</h3>
+<h1 class="title">Mikato</h1>
+
+<div class="portfolio-container">
+    <div class="portfolio" id="portfolio">
+        <div class="project" onclick="loadProject('Project One', 'Detailed content for Project One')">
+            <img src="resources/koi.jpg" alt="Project 1">
+            <h3>Project One</h3>
+        </div>
+        <div class="project" onclick="loadProject('Project Two', 'Detailed content for Project Two')">
+            <img src="resources/agame.jpg" alt="Project 2">
+            <h3>Project Two</h3>
+        </div>
+        <div class="project" onclick="loadProject('Project Three', 'Detailed content for Project Three')">
+            <img src="resources/koi/Pink%20Koi32.jpg" alt="Project 3">
+            <h3>Project Three</h3>
+        </div>
     </div>
 </div>
 
-<button class="upload-btn" onclick="uploadProject()">Upload New Project</button>
+<div class="project-detail" id="project-detail" style="display: none;">
+    <button onclick="backToPortfolio()" class="back-btn">← Back</button>
+    <h2 id="detail-title"></h2>
+    <p id="detail-content"></p>
+</div>
 
 <script src="scripts.js"></script>
 

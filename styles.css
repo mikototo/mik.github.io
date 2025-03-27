@@ -1,14 +1,24 @@
 html, body {
     margin: 0;
     padding: 0;
-    overflow: hidden;
+    overflow-y: auto; /* allow scrolling vertically */
     background-color: #0e0e0e;
     font-family: 'Helvetica', Arial, sans-serif;
     color: #fff;
+    height: 100%;
+}
+
+canvas#background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
 }
 
 .title {
-    position: absolute;
+    position: fixed;
     top: 20px;
     left: 30px;
     font-size: 1.5em;
@@ -17,20 +27,19 @@ html, body {
     z-index: 2;
 }
 
-canvas#background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1;
+.portfolio-container {
+    position: relative;
+    margin-top: 100px;
+    margin-bottom: 100px;
+    padding-bottom: 50px;
+    width: 80%;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    z-index: 2;
 }
 
 .portfolio {
-    position: absolute;
-    z-index: 2;
-    bottom: 50px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80%;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 20px;
@@ -43,6 +52,8 @@ canvas#background {
     backdrop-filter: blur(5px);
     transition: transform 0.3s ease;
     text-align: center;
+    text-decoration: none;
+    color: inherit;
 }
 
 .project:hover {
@@ -54,21 +65,4 @@ canvas#background {
     border-radius: 6px;
 }
 
-.upload-btn {
-    position: absolute;
-    z-index: 2;
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    padding: 10px 20px;
-    background-color: rgba(255, 255, 255, 0.1);
-    border: none;
-    color: #fff;
-    cursor: pointer;
-    border-radius: 6px;
-    transition: background-color 0.3s ease;
-}
 
-.upload-btn:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-}
