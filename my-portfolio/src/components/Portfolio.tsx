@@ -11,17 +11,20 @@ const projects: Project[] = [
     {
         title: "Project One",
         content: "Detailed content for Project One",
-        img: "/resources/koi.jpg",
+        img: "/mik.github.io/resources/koi.jpg",
+
     },
     {
         title: "Project Two",
         content: "Detailed content for Project Two",
-        img: "/resources/agame.jpg",
+        img: "/mik.github.io/resources/agame.jpg",
+
     },
     {
         title: "Project Three",
         content: "Detailed content for Project Three",
-        img: "/resources/koi/Pink Koi32.jpg",
+        img: "/mik.github.io/resources/koi/Pink Koi32.jpg",
+
     },
 ];
 
