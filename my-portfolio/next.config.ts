@@ -1,12 +1,16 @@
 import type { NextConfig } from "next";
 
+const repo = "mik.github.io";                 // your GH-Pages sub-folder
+const isProd = process.env.NODE_ENV === "production";
 
-  const nextConfig = {
-    reactStrictMode: true,
-    output: "export",
-    images: { unoptimized: true },
+const nextConfig: NextConfig = {
+  reactStrictMode: true,
+  output: "export",
+  images: { unoptimized: true },
 
-    basePath: "/mik.github.io",
-    assetPrefix: "/mik.github.io/",
-  };
-  export default nextConfig;
+  /* only add the prefix when we build for GitHub Pages */
+  basePath: isProd ? `/${repo}` : "",
+  assetPrefix: isProd ? `/${repo}/` : "",
+};
+
+export default nextConfig;

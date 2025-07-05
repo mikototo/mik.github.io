@@ -1,7 +1,9 @@
+import { useRouter } from "next/router";   // ← NEW
+
 type Project = {
     title: string;
-    content: string;   // long-form markdown or plain text
-    img: string;       // path in /public or full URL
+    content: string;
+    img: string;          // must start with a leading “/”
 };
 
 type Props = {
@@ -10,17 +12,18 @@ type Props = {
 };
 
 export default function ProjectDetail({ project, backToPortfolio }: Props) {
+    const { basePath } = useRouter();        // "" in dev, "/mik.github.io" in prod
+    const imgSrc = `${basePath}${project.img}`;
+
     return (
         <div className="project-detail flex flex-col items-center">
-            {/* back button stays fixed top-left on the overlay */}
             <button className="back-btn" onClick={backToPortfolio}>
                 ← Back
             </button>
 
-            {/* centered column; scrolls if content is tall */}
             <div className="w-full max-w-3xl mt-16 px-4">
                 <img
-                    src={project.img}
+                    src={imgSrc}                       /* ← prefixed path */
                     alt={`${project.title} screenshot`}
                     className="w-full max-h-[60vh] object-contain rounded-lg shadow-lg mb-8"
                 />
@@ -29,7 +32,6 @@ export default function ProjectDetail({ project, backToPortfolio }: Props) {
                     {project.title}
                 </h2>
 
-                {/* preserve line-breaks if content has them */}
                 <p className="text-lg leading-relaxed whitespace-pre-line">
                     {project.content}
                 </p>

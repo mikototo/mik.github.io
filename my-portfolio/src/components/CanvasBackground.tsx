@@ -17,7 +17,7 @@ const NEON = ["#39ff14", "#00ffff", "#ff10f0", "#f5ff00", "#ff6ec7"];
 
 export default function CanvasBackground() {
     const canvasRef = useRef<HTMLCanvasElement>(null);
-    const animId = useRef<number>();
+    const animId = useRef<number | null>(null);
 
     useEffect(() => {
         const canvas = canvasRef.current!;
@@ -95,7 +95,7 @@ export default function CanvasBackground() {
         animate();
 
         return () => {
-            cancelAnimationFrame(animId.current!);
+            if (animId.current !== null) cancelAnimationFrame(animId.current);
             window.removeEventListener("resize", resize);
         };
     }, []);
